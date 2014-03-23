@@ -50,19 +50,20 @@ HTMLActuator.prototype.addTile = function (tile) {
   var self = this;
 
   var wrapper   = document.createElement("div");
-  var inner     = document.createElement("div");
+  var inner     = document.createElement("img");
   var position  = tile.previousPosition || { x: tile.x, y: tile.y };
   var positionClass = this.positionClass(position);
 
   // We can't use classlist because it somehow glitches when replacing classes
-  var classes = ["tile", "tile-" + tile.value, positionClass];
-
+  //var classes = ["tile", "tile-" + tile.value, positionClass];
+  var classes = ["tile", null, positionClass];
+  
   if (tile.value > 2048) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  inner.textContent = tile.value;
+  inner.src = "style/img/"+tile.value+".jpg";
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
